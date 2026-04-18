@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SK Tech Construction — Reliable Electrical Solutions in Singapore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* SK Tech color palette: dark navy + yellow gold accent */
+  --navy:#0d1b2a;
+  --navy2:#112233;
+  --navy3:#162840;
+  --steel:#1e3550;
+  --accent:#f5c518;   /* yellow gold */
+  --accent-d:#d4a800;
+  --accent-light:#fff9e0;
+  --text:#1a2a3a;
+  --muted:#5a7a96;
+  --sub:#8aabbf;
+  --bg:#f4f7fb;
+  --bg2:#eaf0f8;
+  --card:#ffffff;
+  --border:#dce8f2;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;color:var(--text)}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6vw;height:74px;
+  background:rgba(13,27,42,0);
+  transition:background .4s,box-shadow .4s;
+}
+nav.scrolled{background:rgba(13,27,42,.97);backdrop-filter:blur(18px);box-shadow:0 2px 0 rgba(245,197,24,.18)}
+.logo-wrap{display:flex;align-items:center;gap:.65rem}
+.logo-icon{width:40px;height:40px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--navy);flex-shrink:0}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#fff}
+.logo-text span{color:var(--accent)}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.75);letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links .has-drop{position:relative}
+.nav-links .has-drop:hover .drop{display:block}
+.drop{display:none;position:absolute;top:100%;left:0;background:var(--navy2);border:1px solid rgba(245,197,24,.15);border-radius:8px;min-width:280px;padding:.5rem 0;z-index:10;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.drop li{list-style:none}
+.drop li a{display:block;padding:.6rem 1.2rem;font-size:.82rem;color:rgba(255,255,255,.7);transition:background .2s,color .2s;text-transform:none;letter-spacing:0}
+.drop li a:hover{background:rgba(245,197,24,.08);color:var(--accent)}
+.nav-cta{background:var(--accent)!important;color:var(--navy)!important;padding:.48rem 1.3rem;border-radius:5px;font-weight:700!important;transition:transform .2s,box-shadow .2s!important}
+.nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 24px rgba(245,197,24,.4)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px}
+
+/* ══ HERO ══ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 6vw 80px;overflow:hidden}
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slide{
+  position:absolute;inset:0;opacity:0;transition:opacity 1s ease;
+  background-size:cover;background-position:center;
+}
+.hero-slide.active{opacity:1}
+.hero-slide:nth-child(1){background-image:url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=1920&q=85')}
+.hero-slide:nth-child(2){background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=85')}
+.hero-slide:nth-child(3){background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80')}
+.hero-slide:nth-child(4){background-image:url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1920&q=80')}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(13,27,42,.94) 45%,rgba(13,27,42,.55) 100%)}
+.hero-grid{position:absolute;inset:0;z-index:2;background-image:linear-gradient(rgba(245,197,24,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,.05) 1px,transparent 1px);background-size:64px 64px;animation:gridFlow 25s linear infinite}
+@keyframes gridFlow{from{background-position:0 0}to{background-position:64px 64px}}
+#heroCanvas{position:absolute;inset:0;z-index:3;pointer-events:none}
+
+
+.hero-content{position:relative;z-index:10;max-width:700px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;opacity:0;animation:slideUp .7s .15s ease both}
+.hero-eyebrow::before{content:'';width:30px;height:2px;background:var(--accent)}
+.hero-slide-label{opacity:0;animation:slideUp .7s .25s ease both}
+.hero h1{font-size:clamp(2.8rem,6vw,5.2rem);font-weight:800;line-height:1.02;letter-spacing:-.03em;margin-bottom:1.6rem;color:#fff}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative}
+.hero h1 em::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;animation:ulGrow 1s 1.2s ease both}
+@keyframes ulGrow{to{transform:scaleX(1)}}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.78);max-width:560px;line-height:1.82;margin-bottom:2.6rem;opacity:0;animation:slideUp .8s .55s ease both}
+.hero-btns{display:flex;gap:1.1rem;flex-wrap:wrap;opacity:0;animation:slideUp .8s .72s ease both}
+.btn-primary{background:var(--accent);color:var(--navy);padding:.92rem 2.3rem;border-radius:7px;font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;transition:transform .25s,box-shadow .25s;display:inline-block}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 35px rgba(245,197,24,.4)}
+.btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff;padding:.92rem 2.3rem;border-radius:7px;font-family:'Syne',sans-serif;font-weight:600;font-size:.95rem;backdrop-filter:blur(8px);transition:border-color .25s,background .25s}
+.btn-ghost:hover{border-color:rgba(245,197,24,.6);background:rgba(245,197,24,.08)}
+
+/* hero slide nav dots */
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:.6rem}
+.hero-dot{width:8px;height:8px;border-radius:50%;border:2px solid rgba(255,255,255,.4);cursor:pointer;transition:background .3s,border-color .3s,width .3s}
+.hero-dot.active{background:var(--accent);border-color:var(--accent);width:24px;border-radius:4px}
+
+.hero-stats{position:absolute;right:6vw;bottom:10%;z-index:10;display:flex;flex-direction:column;gap:2rem;opacity:0;animation:slideLeft .9s 1s ease both}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.stat{text-align:right}
+.stat-num{font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;line-height:1;color:#fff}
+.stat-num sup{color:var(--accent);font-size:1.8rem}
+.stat-label{font-size:.72rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.12em;margin-top:.15rem}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ TICKER ══ */
+.clients-strip{background:var(--card);padding:20px 0;border-top:3px solid var(--accent);border-bottom:1px solid var(--border);overflow:hidden;position:relative}
+.clients-strip::before,.clients-strip::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;background:linear-gradient(90deg,var(--card),transparent)}
+.clients-strip::after{right:0;background:linear-gradient(-90deg,var(--card),transparent)}
+.ticker{display:flex;gap:4rem;animation:ticker 22s linear infinite;width:max-content}
+.ticker-item{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--sub);letter-spacing:.08em;white-space:nowrap;transition:color .3s;cursor:default;text-transform:uppercase}
+.ticker-item.dot{color:var(--accent);font-size:1.2rem}
+.ticker-item:not(.dot):hover{color:var(--accent)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ SECTION BASE ══ */
+section{padding:100px 6vw}
+.section-tag{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:flex;align-items:center;gap:.55rem}
+.section-tag::before{content:'';width:22px;height:2px;background:var(--accent)}
+.section-title{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;letter-spacing:-.025em;margin-bottom:1rem;line-height:1.15}
+.section-sub{color:var(--muted);max-width:520px;line-height:1.8;font-size:.95rem}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-45px);transition:opacity .8s ease,transform .8s ease}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(45px);transition:opacity .8s ease,transform .8s ease}
+.reveal-r.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ══ ABOUT ══ */
+.about{background:var(--bg);position:relative;overflow:hidden}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img-wrap{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 80px rgba(13,27,42,.15)}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 7s ease}
+.about-img-wrap:hover img{transform:scale(1.06)}
+.about-img-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(245,197,24,.08),rgba(13,27,42,.15))}
+.about-badge{
+  position:absolute;bottom:-1.2rem;right:-1.2rem;
+  background:var(--accent);width:136px;height:136px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;
+  animation:glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 30px rgba(245,197,24,.45)}50%{box-shadow:0 0 70px rgba(245,197,24,.85),0 0 120px rgba(245,197,24,.25)}}
+.about-badge strong{font-size:2.4rem;font-weight:800;color:var(--navy);line-height:1}
+.about-badge span{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(13,27,42,.75)}
+.about-bullets{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+.about-bullet{display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;color:var(--text);line-height:1.55}
+.about-bullet::before{content:'⚡';font-size:.85rem;margin-top:.05rem;flex-shrink:0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.about-item{padding:1.2rem;border:1px solid var(--border);border-radius:10px;background:var(--card);transition:border-color .3s,box-shadow .3s,transform .3s}
+.about-item:hover{border-color:rgba(245,197,24,.35);box-shadow:0 8px 28px rgba(245,197,24,.1);transform:translateY(-3px)}
+.about-item h4{font-size:.88rem;color:var(--navy);margin-bottom:.25rem}
+.about-item p{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ══ SERVICES ══ */
+.services{position:relative;overflow:hidden;background:var(--navy)}
+.services-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1800&q=70') center/cover no-repeat;opacity:.06}
+.services-inner{position:relative;z-index:2}
+.svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+.svc-header .section-title{color:#fff}
+.svc-header .section-sub{color:rgba(255,255,255,.45)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.svc-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:2rem;position:relative;overflow:hidden;backdrop-filter:blur(8px);transition:transform .3s,border-color .3s,box-shadow .3s}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.svc-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,197,24,.07),transparent 65%);opacity:0;transition:opacity .4s}
+.svc-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.25);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-card:hover::after{opacity:1}
+.svc-icon{width:52px;height:52px;background:rgba(245,197,24,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;border:1px solid rgba(245,197,24,.2);transition:transform .3s,background .3s}
+.svc-card:hover .svc-icon{background:rgba(245,197,24,.2);transform:scale(1.08) rotate(-4deg)}
+.svc-card h3{font-size:1rem;margin-bottom:.5rem;color:#fff}
+.svc-card p{font-size:.855rem;color:rgba(255,255,255,.45);line-height:1.75}
+.svc-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;color:var(--accent);margin-top:1rem;transition:gap .25s}
+.svc-card:hover .svc-link{gap:.75rem}
+
+/* ══ PARALLAX STATS ══ */
+.parallax-band{position:relative;height:340px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.parallax-img{position:absolute;inset:-15%;background:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&q=80') center/cover no-repeat;will-change:transform}
+.parallax-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,27,42,.92),rgba(245,197,24,.18),rgba(13,27,42,.92))}
+.parallax-content{position:relative;z-index:2;display:flex;gap:5rem;flex-wrap:wrap;justify-content:center}
+.p-stat{text-align:center}
+.p-stat-num{font-family:'Syne',sans-serif;font-size:3.6rem;font-weight:800;color:#fff;line-height:1}
+.p-stat-num sup{color:var(--accent);font-size:2rem}
+.p-stat-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.5);margin-top:.4rem}
+
+/* ══ WHY CHOOSE US ══ */
+.why{position:relative;overflow:hidden;background:var(--bg2)}
+.why-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.why-list{display:flex;flex-direction:column;gap:1.4rem;margin-top:2.5rem}
+.why-item{display:flex;gap:1.2rem;padding:1.4rem;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.why-item:hover{border-color:rgba(245,197,24,.3);box-shadow:0 10px 30px rgba(245,197,24,.1);transform:translateX(4px)}
+.why-item-icon{width:48px;height:48px;flex-shrink:0;background:rgba(245,197,24,.1);border-radius:10px;border:1px solid rgba(245,197,24,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.why-item-body h4{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+.why-item-body p{font-size:.85rem;color:var(--muted);line-height:1.65}
+.why-visual{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 80px rgba(13,27,42,.12)}
+.why-visual img{width:100%;height:100%;object-fit:cover;transition:transform 7s ease}
+.why-visual:hover img{transform:scale(1.05)}
+.why-visual-badge{
+  position:absolute;bottom:1.5rem;left:1.5rem;
+  background:var(--navy);color:#fff;
+  border-radius:10px;padding:1rem 1.4rem;
+  display:flex;align-items:center;gap:.8rem;
+  box-shadow:0 8px 30px rgba(0,0,0,.3);
+  border-left:4px solid var(--accent);
+}
+.why-visual-badge strong{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+.why-visual-badge span{font-size:.78rem;color:rgba(255,255,255,.6)}
+
+/* ══ INDUSTRIES SLIDER ══ */
+.industries{position:relative;overflow:hidden;background:var(--navy)}
+.ind-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&q=70') center/cover no-repeat;opacity:.06}
+.ind-inner{position:relative;z-index:2}
+.ind-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+.ind-header .section-title{color:#fff}
+.ind-header .section-sub{color:rgba(255,255,255,.45)}
+.slider-outer{position:relative}
+.slider-track-wrap{overflow:hidden;border-radius:14px}
+.slider-track{display:flex;gap:1.4rem;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.ind-card{
+  flex:0 0 calc(20% - 1.12rem);min-width:200px;
+  border-radius:14px;overflow:hidden;
+  position:relative;
+  aspect-ratio:3/4;
+  min-height:280px;
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .35s,box-shadow .35s,border-color .35s;
+  cursor:default;
+}
+.ind-card-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 6s ease;
+}
+.ind-card:hover .ind-card-img{transform:scale(1.08)}
+.ind-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,27,42,.95) 0%,rgba(13,27,42,.5) 50%,rgba(13,27,42,.2) 100%);
+  transition:background .35s;
+}
+.ind-card:hover .ind-card-overlay{background:linear-gradient(to top,rgba(13,27,42,.98) 0%,rgba(13,27,42,.6) 50%,rgba(13,27,42,.25) 100%)}
+.ind-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-d),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;z-index:3}
+.ind-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5);border-color:rgba(245,197,24,.3)}
+.ind-card:hover::after{transform:scaleX(1)}
+.ind-card-content{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;z-index:2}
+.ind-icon{
+  width:48px;height:48px;border-radius:10px;
+  background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:.9rem;
+  backdrop-filter:blur(6px);
+  transition:background .3s,transform .3s;
+}
+.ind-card:hover .ind-icon{background:rgba(245,197,24,.28);transform:scale(1.1) rotate(-5deg)}
+.ind-card h4{font-size:.92rem;font-weight:700;color:#fff;line-height:1.4}
+.ind-card p{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.3rem;line-height:1.5}
+.slider-controls{display:flex;align-items:center;gap:1rem;margin-top:2rem;justify-content:center}
+.slider-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;font-size:1rem;color:rgba(255,255,255,.6)}
+.slider-btn:hover{border-color:var(--accent);background:var(--accent);color:var(--navy);transform:scale(1.08)}
+.slider-dots{display:flex;gap:.5rem}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,width .3s;cursor:pointer}
+.slider-dot.active{background:var(--accent);width:24px;border-radius:4px}
+
+/* ══ PROJECTS ══ */
+.projects{background:var(--bg);position:relative}
+.proj-tabs{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.proj-tab{padding:.5rem 1.2rem;border-radius:5px;font-size:.82rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--muted);transition:background .2s,border-color .2s,color .2s}
+.proj-tab.active,.proj-tab:hover{background:var(--accent);border-color:var(--accent);color:var(--navy)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.proj-card{border-radius:12px;overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer}
+.proj-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.proj-card:hover img{transform:scale(1.08)}
+.proj-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.85),transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1.2rem}
+.proj-card:hover .proj-card-overlay{opacity:1}
+.proj-card-overlay span{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:#fff}
+
+/* ══ CERTIFICATIONS ══ */
+.certs{position:relative;overflow:hidden;background:var(--bg2)}
+.certs-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.cert-badges{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.cert-badge{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:.9rem 1.4rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.83rem;color:var(--navy);display:flex;align-items:center;gap:.55rem;transition:border-color .3s,box-shadow .3s,transform .3s}
+.cert-badge::before{content:'✓';color:var(--accent);font-weight:900;font-size:1rem}
+.cert-badge:hover{border-color:rgba(245,197,24,.4);box-shadow:0 6px 20px rgba(245,197,24,.12);transform:translateY(-2px)}
+
+/* ══ CTA BAND ══ */
+.cta-band{
+  position:relative;overflow:hidden;
+  padding:60px 6vw;
+  background:var(--navy);
+}
+.cta-band-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1800&q=80') center/cover no-repeat;
+  opacity:.12;
+  animation:ctaZoom 15s ease-in-out infinite alternate;
+}
+@keyframes ctaZoom{from{transform:scale(1.0)}to{transform:scale(1.06)}}
+.cta-band-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,27,42,.97) 0%,rgba(13,27,42,.80) 100%)}
+.cta-band-left-bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,var(--accent),var(--accent-d))}
+.cta-band-glow{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(245,197,24,.07),transparent 65%);pointer-events:none}
+.cta-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:2.5rem;flex-wrap:wrap}
+.cta-text{}
+.cta-tag{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.cta-tag::before{content:'';width:18px;height:2px;background:var(--accent)}
+.cta-band h2{font-size:clamp(1.5rem,2.8vw,2.4rem);color:#fff;letter-spacing:-.025em;line-height:1.2;margin:0}
+.cta-band h2 span{color:var(--accent)}
+.cta-actions{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0}
+.cta-contact-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:flex-end}
+.cta-phone{display:flex;align-items:center;gap:.6rem;color:rgba(255,255,255,.55);font-size:.85rem}
+.cta-phone strong{color:#fff;font-size:1rem}
+.btn-yellow{
+  background:var(--accent);color:var(--navy);
+  padding:.85rem 2.2rem;border-radius:7px;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.92rem;
+  transition:transform .25s,box-shadow .25s;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-yellow::after{content:'→';font-size:1rem}
+.btn-yellow:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(245,197,24,.4)}
+.btn-outline-yellow{
+  border:1px solid rgba(245,197,24,.4);color:var(--accent);
+  padding:.85rem 2rem;border-radius:7px;
+  font-family:'Syne',sans-serif;font-weight:600;font-size:.88rem;
+  transition:border-color .25s,background .25s;white-space:nowrap;
+}
+.btn-outline-yellow:hover{border-color:var(--accent);background:rgba(245,197,24,.08)}
+.cta-divider{width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0}
+@media(max-width:768px){.cta-actions{align-items:flex-start}.cta-contact-row{justify-content:flex-start}}
+
+/* ══ FOOTER ══ */
+footer{background:var(--navy2);padding:80px 6vw 0;border-top:3px solid var(--accent)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.6fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo-text{color:#fff;font-size:1.15rem;margin-bottom:1rem;display:block}
+.footer-brand p{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:280px}
+.footer-col h5{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:1.3rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.85rem;color:rgba(255,255,255,.38);transition:color .2s,padding-left .2s}
+.footer-col ul li a:hover{color:var(--accent);padding-left:4px}
+.contact-line{display:flex;gap:.7rem;font-size:.84rem;color:rgba(255,255,255,.38);margin-bottom:.65rem;line-height:1.55;align-items:flex-start}
+.contact-line strong{color:var(--accent);font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.28)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.78rem;color:rgba(255,255,255,.28);transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+.social-links{display:flex;gap:.75rem}
+.social-links a{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.4);transition:border-color .2s,color .2s,background .2s}
+.social-links a:hover{border-color:var(--accent);color:var(--navy);background:var(--accent)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  .about-inner,.certs-inner,.why-inner{grid-template-columns:1fr}
+  .about-badge{bottom:.5rem;right:.5rem}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{display:none}
+  .ind-card{flex:0 0 calc(50% - .7rem);min-width:180px}}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-band{flex-direction:column;text-align:center}
+  .parallax-content{gap:3rem}
+  .ind-card{flex:0 0 100%;min-width:0}
+  .proj-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <div class="logo-wrap">
+    <div class="logo-icon">SK</div>
+    <div class="logo-text">SK Tech <span>Construction</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li class="has-drop">
+      <a href="#services">Services ▾</a>
+      <ul class="drop">
+        <li><a href="#services">All Kind of E&amp;I Installation Works</a></li>
+        <li><a href="#services">ELV System Installation Works</a></li>
+        <li><a href="#services">Technical Manpower Supply</a></li>
+        <li><a href="#services">Design &amp; Supply of LV Switchboards</a></li>
+        <li><a href="#services">LEW Services</a></li>
+        <li><a href="#services">EMA Licensing for Electrical &amp; Generator Installation Works</a></li>
+        <li><a href="#services">HT &amp; LT Switchboard Testing</a></li>
+      </ul>
+    </li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Reliable · Professional · Certified</div>
+    <h1 id="heroTitle">Fast and <em>Reliable</em><br>Electrical Services</h1>
+    <p class="hero-desc" id="heroDesc">At SK Tech Construction, we offer expert electrical and ELV services including E&amp;I installation, LV switchboards, manpower supply, LEW services, and testing — ensuring quality, safety, and efficiency in every project across Singapore.</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn-primary">About Us</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" data-count="15"><span>0</span><sup>+</sup></div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num" data-count="300"><span>0</span><sup>+</sup></div><div class="stat-label">Projects Done</div></div>
+    <div class="stat"><div class="stat-num" data-count="100"><span>0</span><sup>%</sup></div><div class="stat-label">Client Satisfaction</div></div>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="clients-strip">
+  <div class="ticker">
+    <span class="ticker-item">E&amp;I Installation</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">ELV Systems</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">LEW Services</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">LV Switchboards</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">HT &amp; LT Testing</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">Technical Manpower</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">EMA Licensing</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">E&amp;I Installation</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">ELV Systems</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">LEW Services</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">LV Switchboards</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">HT &amp; LT Testing</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">Technical Manpower</span><span class="ticker-item dot">⚡</span>
+    <span class="ticker-item">EMA Licensing</span><span class="ticker-item dot">⚡</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="reveal-l">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80" alt="SK Tech team at work"/>
+        <div class="about-img-overlay"></div>
+        <div class="about-badge"><strong>15</strong><span>Yrs Exp.</span></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="section-tag">About SK Tech Construction</div>
+      <h2 class="section-title">Reliable Electrical Solutions<br>in Singapore</h2>
+      <p style="line-height:1.85;margin-bottom:1rem">At SK Tech Construction, we offer expert electrical and ELV services including E&amp;I installation, LV switchboards, manpower supply, LEW services, and testing. We ensure quality, safety, and efficiency in every project — trusted across Singapore.</p>
+      <div class="about-bullets">
+        <div class="about-bullet">Our team is equipped with certified professionals and industry-grade tools.</div>
+        <div class="about-bullet">We specialize in tailored solutions for commercial, industrial, and residential needs.</div>
+        <div class="about-bullet">Timely delivery and compliance with all safety standards are our priorities.</div>
+        <div class="about-bullet">Partner with us for reliable and future-ready electrical infrastructure.</div>
+      </div>
+      <div style="margin-top:2rem">
+        <a href="#contact" class="btn-primary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section class="services" id="services">
+  <div class="services-bg"></div>
+  <div class="services-inner">
+    <div class="svc-header">
+      <div>
+        <div class="section-tag reveal">Our Services</div>
+        <h2 class="section-title reveal d1">Expert Electrical &amp; ELV Services</h2>
+      </div>
+      <p class="section-sub reveal d2" style="max-width:320px">We provide expert E&amp;I installations, ELV systems, LEW services, switchboard testing, and technical manpower to meet all industrial electrical needs.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><div class="svc-icon">⚡</div><h3>All Kind of E&amp;I Installation Works</h3><p>Comprehensive electrical and instrumentation installations for commercial, industrial, and residential projects across Singapore.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal d1"><div class="svc-icon">📡</div><h3>ELV System Installation Works</h3><p>Professional Extra Low Voltage system installations including CCTV, access control, fire alarm, PA systems, and structured cabling.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">👷</div><h3>Technical Manpower Supply</h3><p>Supplying certified and experienced electrical technicians and engineers to supplement your project workforce on demand.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">🔌</div><h3>Design &amp; Supply of LV Switchboards</h3><p>Custom-designed and supplied low voltage switchboards meeting all regulatory standards for your specific project requirements.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal d4"><div class="svc-icon">📋</div><h3>LEW Services</h3><p>Licensed Electrical Worker services for inspection, testing, commissioning, and maintenance of electrical installations.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal d5"><div class="svc-icon">🏭</div><h3>EMA Licensing for Electrical &amp; Generator Works</h3><p>EMA-compliant licensing services for electrical and generator installation works, ensuring full regulatory compliance.</p><span class="svc-link">Learn more →</span></div>
+      <div class="svc-card reveal"><div class="svc-icon">🔬</div><h3>HT &amp; LT Switchboard Testing</h3><p>Precision testing and commissioning of High Tension and Low Tension switchboards ensuring safe and reliable operation.</p><span class="svc-link">Learn more →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS PARALLAX ══ -->
+<div class="parallax-band">
+  <div class="parallax-img" id="parallaxEl"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content">
+    <div class="p-stat reveal"><div class="p-stat-num" data-count="15"><span>0</span><sup>+</sup></div><div class="p-stat-label">Years of Experience</div></div>
+    <div class="p-stat reveal d1"><div class="p-stat-num" data-count="300"><span>0</span><sup>+</sup></div><div class="p-stat-label">Projects Completed</div></div>
+    <div class="p-stat reveal d2"><div class="p-stat-num" data-count="100"><span>0</span><sup>%</sup></div><div class="p-stat-label">Safety Compliance</div></div>
+    <div class="p-stat reveal d3"><div class="p-stat-num" data-count="50"><span>0</span><sup>+</sup></div><div class="p-stat-label">Certified Professionals</div></div>
+  </div>
+</div>
+
+<!-- ══ WHY CHOOSE US ══ -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-tag reveal">Why Choose Us</div>
+      <h2 class="section-title reveal d1">Skilled, Licensed, Reliable &amp; Complete</h2>
+      <p class="section-sub reveal d2">Skilled in E&amp;I works, licensed, reliable, and trusted for complete electrical solutions across Singapore's industries.</p>
+      <div class="why-list">
+        <div class="why-item reveal d1">
+          <div class="why-item-icon">🏆</div>
+          <div class="why-item-body">
+            <h4>Licensed Expert Team</h4>
+            <p>Our skilled LEWs deliver safe and compliant electrical services in every project we undertake.</p>
+          </div>
+        </div>
+        <div class="why-item reveal d2">
+          <div class="why-item-icon">⚙️</div>
+          <div class="why-item-body">
+            <h4>Complete E&amp;I Work</h4>
+            <p>We handle supply, installation, and testing with precision from project start to final handover.</p>
+          </div>
+        </div>
+        <div class="why-item reveal d3">
+          <div class="why-item-icon">⏱️</div>
+          <div class="why-item-body">
+            <h4>Timely Project Delivery</h4>
+            <p>Efficient planning ensures every project meets deadlines without compromising on quality.</p>
+          </div>
+        </div>
+        <div class="why-item reveal d4">
+          <div class="why-item-icon">✅</div>
+          <div class="why-item-body">
+            <h4>Quality Assurance</h4>
+            <p>We follow strict standards and best practices to ensure top-notch workmanship on every job.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="why-visual">
+        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=900&q=80" alt="SK Tech electrical work"/>
+        <div class="why-visual-badge">
+          <div>
+            <strong>Expert Electrical Insights</strong>
+            <span style="display:block">Trusted tips &amp; updates in power systems</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INDUSTRIES SLIDER ══ -->
+<section class="industries" id="industries">
+  <div class="ind-bg"></div>
+  <div class="ind-inner">
+    <div class="ind-header">
+      <div>
+        <div class="section-tag reveal">Industries</div>
+        <h2 class="section-title reveal d1">Industries We Serve</h2>
+      </div>
+      <p class="section-sub reveal d2" style="max-width:340px">We deliver reliable electrical solutions across multiple industries throughout Singapore.</p>
+    </div>
+    <div class="slider-outer reveal">
+      <div class="slider-track-wrap">
+        <div class="slider-track" id="sliderTrack">
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">🏭</div>
+              <h4>Industrial &amp; Manufacturing</h4>
+              <p>Factories &amp; production plants in Singapore</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">🏗️</div>
+              <h4>Construction &amp; Infrastructure</h4>
+              <p>Building Singapore's future skyline</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">💊</div>
+              <h4>Pharmaceutical &amp; Healthcare</h4>
+              <p>Biomedical &amp; pharma labs at Biopolis</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">💻</div>
+              <h4>Semiconductors &amp; Electronics</h4>
+              <p>Wafer fabs &amp; chip manufacturing</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">🖧</div>
+              <h4>Data Centers &amp; IT</h4>
+              <p>Singapore's world-class digital hubs</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">🏢</div>
+              <h4>Commercial &amp; Offices</h4>
+              <p>CBD towers &amp; commercial developments</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">🏠</div>
+              <h4>Residential &amp; HDB</h4>
+              <p>Housing estates across Singapore</p>
+            </div>
+          </div>
+
+          <div class="ind-card">
+            <div class="ind-card-img" style="background-image:url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80')"></div>
+            <div class="ind-card-overlay"></div>
+            <div class="ind-card-content">
+              <div class="ind-icon">⛽</div>
+              <h4>Oil, Gas &amp; Petrochemical</h4>
+              <p>Jurong Island refineries &amp; plants</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn" id="prevBtn">&#8592;</button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="nextBtn">&#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="projects" id="projects">
+  <div class="section-tag reveal">Design Projects</div>
+  <h2 class="section-title reveal d1">Our Project Gallery</h2>
+  <p class="section-sub reveal d2" style="margin-bottom:2.5rem">We offer complete electrical design solutions, including system planning, layout drawings, and technical support for seamless execution of industrial and commercial projects.</p>
+  <div class="proj-tabs reveal">
+    <div class="proj-tab active">All Projects</div>
+    <div class="proj-tab">Electrical System Testing</div>
+    <div class="proj-tab">ELV System Installation</div>
+    <div class="proj-tab">HT &amp; LT Switchboard Testing</div>
+    <div class="proj-tab">LEW Services</div>
+  </div>
+  <div class="proj-grid reveal">
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>Electrical Installation</span></div></div>
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>E&amp;I Works</span></div></div>
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>Switchboard Testing</span></div></div>
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>ELV System</span></div></div>
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>LEW Services</span></div></div>
+    <div class="proj-card"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80" alt="Project"/><div class="proj-card-overlay"><span>LV Switchboards</span></div></div>
+  </div>
+</section>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<section class="certs" id="certs">
+  <div class="certs-inner">
+    <div class="reveal-l">
+      <div class="section-tag">Certifications &amp; Compliance</div>
+      <h2 class="section-title">Powering Progress with<br>Precision &amp; Trust</h2>
+      <p style="color:var(--muted);line-height:1.8;margin-top:1.2rem;max-width:420px">Our team holds all required EMA licenses and industry certifications, ensuring every project meets Singapore's strict electrical safety and compliance standards.</p>
+      <div style="margin-top:2rem"><a href="#contact" class="btn-primary">Get In Touch</a></div>
+    </div>
+    <div class="reveal-r">
+      <div class="cert-badges">
+        <div class="cert-badge">EMA Licensed LEW</div>
+        <div class="cert-badge">BizSafe Certified</div>
+        <div class="cert-badge">ISO 9001 Quality</div>
+        <div class="cert-badge">EMA Registered Contractor</div>
+        <div class="cert-badge">HT Switchboard Qualified</div>
+        <div class="cert-badge">LV Switchboard Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══ -->
+<div class="cta-band" id="contact">
+  <div class="cta-band-bg"></div>
+  <div class="cta-band-overlay"></div>
+  <div class="cta-band-left-bar"></div>
+  <div class="cta-band-glow"></div>
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <div class="cta-tag">Let's Work Together</div>
+      <h2>Ready to Start Your <span>Next Electrical Project?</span></h2>
+    </div>
+    <div class="cta-actions reveal d2">
+      <div class="cta-contact-row">
+        <div class="cta-phone">
+          📞 <strong>+65 9108 7165</strong>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-phone">
+          ✉️ <strong>jagen@sktechcons.com</strong>
+        </div>
+      </div>
+      <div class="cta-contact-row">
+        <a href="tel:+6591087165" class="btn-yellow">Call Us Now</a>
+        <a href="mailto:jagen@sktechcons.com" class="btn-outline-yellow">Send Email</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-wrap" style="margin-bottom:1rem">
+        <div class="logo-icon">SK</div>
+        <span class="logo-text">SK Tech <span>Construction</span></span>
+      </div>
+      <p>Sktech is a trusted provider of comprehensive Electrical and Instrumentation (E&amp;I) solutions. We specialize in smart panel installations, industrial wiring, and system integration with a focus on quality and safety.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Useful Links</h5>
+      <ul>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects">Portfolio</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact Us</h5>
+      <div class="contact-line"><strong>📍</strong>3 Soon Lee Street, #04-19 Pioneer Junction, Singapore 627606</div>
+      <div class="contact-line"><strong>📞</strong>+65 9108 7165</div>
+      <div class="contact-line"><strong>✉️</strong>jagen@sktechcons.com</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyright © 2026 SK Tech Construction. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Terms &amp; Condition</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="social-links">
+      <a href="#" title="Facebook">f</a>
+      <a href="#" title="Instagram">ig</a>
+      <a href="#" title="LinkedIn">in</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV ── */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+/* ── HERO SLIDESHOW ── */
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const titles = [
+    'Fast and <em>Reliable</em><br>Electrical Services',
+    'Professional<br><em>Electrical Solutions</em>',
+    '24/7 Emergency<br><em>Electrical Services</em>',
+    'Trusted by<br><em>Thousands of Clients</em>'
+  ];
+  let cur = 0, timer;
+  function goTo(i){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('heroTitle').innerHTML = titles[cur];
+  }
+  function next(){ goTo((cur+1)%slides.length); }
+  timer = setInterval(next, 5000);
+  dots.forEach((d,i) => d.addEventListener('click', () => { clearInterval(timer); goTo(i); timer = setInterval(next, 5000); }));
+})();
+
+/* ── PARTICLES ── */
+(function(){
+  const c = document.getElementById('heroCanvas'), ctx = c.getContext('2d');
+  let W, H, pts = [];
+  function resize(){ W = c.width = innerWidth; H = c.height = innerHeight; }
+  resize(); addEventListener('resize', resize);
+  function Pt(){ this.x=Math.random()*W; this.y=Math.random()*H; this.r=Math.random()*1.5+.4; this.vx=(Math.random()-.5)*.28; this.vy=(Math.random()-.5)*.28; this.a=Math.random()*.4+.08; }
+  for(let i=0;i<90;i++) pts.push(new Pt());
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(245,197,24,${p.a})`; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1; });
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){ const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy); if(d<130){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(245,197,24,${.1*(1-d/130)})`; ctx.lineWidth=.5; ctx.stroke(); } }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+
+/* ── PARALLAX ── */
+const px = document.getElementById('parallaxEl');
+window.addEventListener('scroll', () => {
+  if(px){ const r = px.closest('.parallax-band').getBoundingClientRect(); px.style.transform = `translateY(${r.top*.3}px)`; }
+}, {passive:true});
+
+/* ── COUNTERS ── */
+function animCount(el){ const t=+el.dataset.count,s=el.querySelector('span');let st=0; const r=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/1800,1);s.textContent=Math.floor((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(r);else s.textContent=t;}; requestAnimationFrame(r); }
+const cObs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting&&!x.target.dataset.done){x.target.dataset.done=1;animCount(x.target);}}),{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+
+/* ── SLIDER ── */
+(function(){
+  const track = document.getElementById('sliderTrack');
+  const dotsWrap = document.getElementById('sliderDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cards = track.querySelectorAll('.ind-card');
+  let cur = 0;
+  function getVis(){ if(window.innerWidth<=640)return 1; if(window.innerWidth<=960)return 2; return 5; }
+  function maxIdx(){ return Math.max(0, cards.length - getVis()); }
+  function buildDots(){
+    dotsWrap.innerHTML='';
+    for(let i=0;i<=maxIdx();i++){
+      const d=document.createElement('div');
+      d.className='slider-dot'+(i===cur?' active':'');
+      d.addEventListener('click',()=>goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+  function goTo(i){
+    cur=Math.max(0,Math.min(i,maxIdx()));
+    const cw=cards[0].offsetWidth+22;
+    track.style.transform=`translateX(-${cur*cw}px)`;
+    dotsWrap.querySelectorAll('.slider-dot').forEach((d,j)=>d.classList.toggle('active',j===cur));
+  }
+  prevBtn.addEventListener('click',()=>goTo(cur-1));
+  nextBtn.addEventListener('click',()=>goTo(cur+1));
+  let auto=setInterval(()=>goTo(cur+1>maxIdx()?0:cur+1),3500);
+  [prevBtn,nextBtn].forEach(b=>b.addEventListener('click',()=>{ clearInterval(auto); auto=setInterval(()=>goTo(cur+1>maxIdx()?0:cur+1),3500); }));
+  track.addEventListener('touchstart',e=>{ track._tx=e.touches[0].clientX; },{passive:true});
+  track.addEventListener('touchend',e=>{ const diff=track._tx-e.changedTouches[0].clientX; if(Math.abs(diff)>40){diff>0?goTo(cur+1):goTo(cur-1);} });
+  function init(){ buildDots(); goTo(0); }
+  init();
+  window.addEventListener('resize',()=>{ buildDots(); goTo(Math.min(cur,maxIdx())); });
+})();
+
+/* ── PROJECT TABS ── */
+document.querySelectorAll('.proj-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
